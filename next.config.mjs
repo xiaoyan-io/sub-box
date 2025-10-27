@@ -1,3 +1,5 @@
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+
 let userConfig = undefined;
 
 /** @type {import('next').NextConfig} */
@@ -18,13 +20,10 @@ const nextConfig = {
   },
 };
 
-mergeConfig(nextConfig, userConfig);
-
 function mergeConfig(nextConfig, userConfig) {
   if (!userConfig) {
     return;
   }
-
   for (const key in userConfig) {
     if (typeof nextConfig[key] === "object" && !Array.isArray(nextConfig[key])) {
       nextConfig[key] = {
@@ -37,8 +36,9 @@ function mergeConfig(nextConfig, userConfig) {
   }
 }
 
+mergeConfig(nextConfig, userConfig);
+
 export default nextConfig;
 
-import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
-
+// 启动 Cloudflare Dev 支持
 initOpenNextCloudflareForDev();
