@@ -1,4 +1,6 @@
+# Worker 名称
 name = "sub-box"
+
 main = ".open-next/worker.js"
 
 compatibility_date = "2024-09-26"
@@ -8,18 +10,33 @@ minify = true
 
 assets = { directory = ".open-next/assets", binding = "ASSETS" }
 
+# [placement]
+# mode = "smart"
+
+# 环境变量（自定义）
 [vars]
-ADMIN_USERNAME = "nas"
-ADMIN_PASSWORD = "N1gh7f@ll99!"
-JWT_SECRET = "iB}MMO,MB]OCh&!hxB_s[Jl6Q$TA+e=p,U6UxZ8,]L+]BV}:s?UF<f*WoKALeKpD"
+# 管理后台登录账号/密码
+ADMIN_USERNAME = "admin"
+ADMIN_PASSWORD = "maung1985"
+
+# 用于生成 JWT 的密钥，必须很长很随机
+JWT_SECRET = "q18Ssl1HuV5HNaoQnly1TJVhhimlObOsve5imfw4FHQ="
 SESSION_TAG = "0"
-SESSION_DURATION = "2592000"
+SESSION_DURATION = "7d"
+
+# 部署目标
 DEPLOY_TARGET = "cloudflare"
 
+# 绑定 D1 数据库
 [[d1_databases]]
 binding = "DB"
-database_name = "subhome"
-database_id   = "5f97046c-574c-40b2-b174-0da960786d03"
+database_name = "subhome"   # 你在 D1 控制台创建的数据库名
+database_id   = "5f97046c-574c-40b2-b174-0da960786d03"  # D1 数据库 ID
 
 [observability.logs]
 enabled = true
+
+# 如果需要 R2 可解开
+# [[r2_buckets]]
+# binding = "NEXT_INC_CACHE_R2_BUCKET"
+# bucket_name = "prod-sub-box-next-inc-cache"
